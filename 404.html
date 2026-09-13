@@ -18,7 +18,10 @@
       for (const response of responses) {
         if (!response.ok) throw new Error(`BOS bundle part failed: ${response.status} ${response.url}`);
       }
-      const source = (await Promise.all(responses.map((response) => response.text()))).join("");
+      const partSources = await Promise.all(responses.map((response) => response.text()));
+      const source = partSources
+        .map((part, index) => (index < partSources.length - 1 && part.endsWith("\n") ? part.slice(0, -1) : part))
+        .join("");
       const digest = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(source))))
         .map((byte) => byte.toString(16).padStart(2, "0"))
         .join("");
