@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "marker": "bos_public_synthetic_demo_v1",
+  "releaseType": "public_synthetic_demo",
+  "dataMode": "synthetic_demo",
+  "syntheticOnly": true,
+  "containsRealData": false,
+  "containsPrivateApi": false,
+  "generatedBy": "scripts/export_bos_public_demo.mjs"
+}

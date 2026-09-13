@@ -1,0 +1,17 @@
+{
+  "releaseId": "local-2026-09-13T07-37-57-820Z",
+  "buildTime": "2026-09-13T07:37:57.821Z",
+  "gitCommit": "unknown",
+  "gitBranch": "unknown",
+  "chunkHints": [
+    "api-client-OWCgmmwM.js",
+    "layout-shell-CQbLbtqq.js",
+    "page-actioncollaboration-5jDzGQDN.js",
+    "page-knowledgepage-BVmoQQuO.js",
+    "page-settingspage-DNAczO_8.js",
+    "page-signallibrary-C9_m-Rmz.js",
+    "page-todayfocus-Cupe5u5t.js",
+    "page-toolmarket-uaQpmmnR.js"
+  ],
+  "source": "generated"
+}
