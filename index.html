@@ -5,12 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Cpath d='M15 17h20c10 0 15 5 15 13 0 5-3 9-8 11l9 9H39l-7-8h-5v8H15V17zm12 10v7h8c2 0 4-1 4-4s-2-3-4-3h-8z' fill='%23fff'/%3E%3C/svg%3E" />
     <title>BOS AI品牌经营工作台</title>
-    <script type="module" crossorigin src="/BOS-public-demo/assets/index-1S-uC7OS.js"></script>
-    <link rel="modulepreload" crossorigin href="/BOS-public-demo/assets/vendor-Da9v461V.js">
-    <link rel="modulepreload" crossorigin href="/BOS-public-demo/assets/react-vendor-B_D2VoFs.js">
-    <link rel="modulepreload" crossorigin href="/BOS-public-demo/assets/api-client-OWCgmmwM.js">
-    <link rel="modulepreload" crossorigin href="/BOS-public-demo/assets/icons-vendor-Hci8sMIx.js">
-    <link rel="modulepreload" crossorigin href="/BOS-public-demo/assets/layout-shell-CQbLbtqq.js">
+    <script type="module">
+      const parts = [
+        "assets/index-ChiryLV4.part-01.txt",
+        "assets/index-ChiryLV4.part-02.txt",
+        "assets/index-ChiryLV4.part-03.txt",
+        "assets/index-ChiryLV4.part-04.txt",
+        "assets/index-ChiryLV4.part-05.txt",
+      ];
+      const expectedSha256 = "915218f930ca686d6bc30477c41bcc90446298d3aaf3b92c2981e23fce26c9a5";
+      const responses = await Promise.all(parts.map((part) => fetch(new URL(part, import.meta.url))));
+      for (const response of responses) {
+        if (!response.ok) throw new Error(`BOS bundle part failed: ${response.status} ${response.url}`);
+      }
+      const source = (await Promise.all(responses.map((response) => response.text()))).join("");
+      const digest = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(source))))
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
+      if (digest !== expectedSha256) throw new Error("BOS bundle integrity check failed");
+      const moduleUrl = URL.createObjectURL(new Blob([source], { type: "text/javascript" }));
+      try {
+        await import(moduleUrl);
+      } finally {
+        URL.revokeObjectURL(moduleUrl);
+      }
+    </script>
     <link rel="stylesheet" crossorigin href="/BOS-public-demo/assets/index-DYVWEckB.css">
   </head>
   <body>
