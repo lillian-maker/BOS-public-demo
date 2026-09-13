@@ -7,11 +7,11 @@
     <title>BOS AI品牌经营工作台</title>
     <script type="module">
       const parts = [
-        "assets/index-ChiryLV4.part-01.txt",
-        "assets/index-ChiryLV4.part-02.txt",
-        "assets/index-ChiryLV4.part-03.txt",
-        "assets/index-ChiryLV4.part-04.txt",
-        "assets/index-ChiryLV4.part-05.txt",
+        "/BOS-public-demo/assets/index-ChiryLV4.part-01.txt",
+        "/BOS-public-demo/assets/index-ChiryLV4.part-02.txt",
+        "/BOS-public-demo/assets/index-ChiryLV4.part-03.txt",
+        "/BOS-public-demo/assets/index-ChiryLV4.part-04.txt",
+        "/BOS-public-demo/assets/index-ChiryLV4.part-05.txt",
       ];
       const expectedSha256 = "915218f930ca686d6bc30477c41bcc90446298d3aaf3b92c2981e23fce26c9a5";
       const responses = await Promise.all(parts.map((part) => fetch(new URL(part, import.meta.url))));
